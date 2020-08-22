@@ -7,13 +7,9 @@ class ScrapController {
         this.db = db;
         this.init();
 
-        schedule('0 1 * * *', async () => {
+        schedule('* */12 * * *', async () => {
             await this.GetTags()
-        }).start()
-        schedule('0 6 * * *', async () => {
             await this.GetCompaniesTimeSeries()
-        }).start()
-        schedule('0 12 * * *', async () => {
             await this.CalculateData()
         }).start()
     }
