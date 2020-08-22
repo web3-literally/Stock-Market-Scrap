@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="7" viewBox="0 0 10 7">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="crop" width="10" height="7" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_3" data-name="Path 3" d="M9.683,1.146,5.39,6.512a.5.5,0,0,1-.7.078.48.48,0,0,1-.078-.078L.317,1.146A.5.5,0,0,1,.707.333H9.293a.5.5,0,0,1,.39.813Z" fill="none" clip-rule="evenodd"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Rectangle_6" data-name="Rectangle 6" width="1600" height="1160" transform="translate(-646 -127)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Vector_Smart_Object_copy" data-name="Vector Smart Object copy" clip-path="url(#clip-path)">
+    <g id="Group_12" data-name="Group 12">
+      <g id="Group_11" data-name="Group 11" clip-path="url(#clip-path-2)">
+        <g id="Group_10" data-name="Group 10">
+          <g id="Group_9" data-name="Group 9" clip-path="url(#clip-path-3)">
+            <rect id="Rectangle_5" data-name="Rectangle 5" width="19.586" height="16.366" transform="translate(-4.793 -4.667)" fill="#92929d"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

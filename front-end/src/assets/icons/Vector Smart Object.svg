@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17" height="20" viewBox="0 0 17 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="crop" width="17" height="20" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_78" data-name="Path 78" d="M11.334,1.9A4.953,4.953,0,0,0,6.4,6.878v5.006a.969.969,0,0,1-.1.43l-.988,1.972H17.355l-.987-1.972a.957.957,0,0,1-.1-.43V6.878A4.954,4.954,0,0,0,11.334,1.9Zm0-3.81A2.842,2.842,0,0,1,14.148.61a6.883,6.883,0,0,1,4.008,6.268v4.779l1.577,3.151a.952.952,0,0,1-.843,1.382H14.006a2.827,2.827,0,0,1-5.344,0H3.779a.952.952,0,0,1-.842-1.382l1.577-3.151V6.878A6.884,6.884,0,0,1,8.521.61,2.843,2.843,0,0,1,11.334-1.9Z" fill="none" clip-rule="evenodd"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Rectangle_136" data-name="Rectangle 136" width="1511.111" height="954.286" transform="translate(-1379.833 -26.667)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Vector_Smart_Object" data-name="Vector Smart Object" clip-path="url(#clip-path)">
+    <g id="Group_268" data-name="Group 268">
+      <g id="Group_267" data-name="Group 267" clip-path="url(#clip-path-2)">
+        <g id="Group_266" data-name="Group 266">
+          <g id="Group_265" data-name="Group 265" clip-path="url(#clip-path-3)">
+            <rect id="Rectangle_135" data-name="Rectangle 135" width="26.447" height="29.524" transform="translate(-1.889 -6.667)" fill="#92929d"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

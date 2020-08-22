@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="20" viewBox="0 0 18 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="crop" width="18" height="20" transform="translate(0 -20)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_129" data-name="Rectangle 129" width="47.25" height="46.667" rx="11.18" transform="translate(-14.625 -33.333)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Rectangle_128" data-name="Rectangle 128" width="1800" height="1282.222" transform="translate(-1733.625 -1248.889)" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-5">
+      <path id="Path_76" data-name="Path 76" d="M15.17-6.692l2.25-2.252a.826.826,0,0,0,0-1.174l-2.25-2.222a.85.85,0,0,0-1.192,0,.825.825,0,0,0,0,1.178l.614.608H6.469a.839.839,0,0,0-.844.833.839.839,0,0,0,.844.833h8.524L13.968-7.863a.826.826,0,0,0,.008,1.179A.851.851,0,0,0,15.17-6.692ZM10.125,0a3.735,3.735,0,0,0,3.938-3.5V-5.278a.839.839,0,0,0-.844-.833.839.839,0,0,0-.844.833V-3.5a2.079,2.079,0,0,1-2.25,1.833H3.938A2.079,2.079,0,0,1,1.688-3.5V-15.944a2.079,2.079,0,0,1,2.25-1.833h6.188a2.079,2.079,0,0,1,2.25,1.833v1.778a.844.844,0,0,0,1.688,0v-1.778a3.735,3.735,0,0,0-3.937-3.5H3.938A3.735,3.735,0,0,0,0-15.944V-3.5A3.735,3.735,0,0,0,3.938,0Z" fill="none" clip-rule="evenodd"/>
+    </clipPath>
+  </defs>
+  <g id="Vector_Smart_Object" data-name="Vector Smart Object" transform="translate(-22 -678)">
+    <g id="Vector_Smart_Object-2" data-name="Vector Smart Object" transform="matrix(-1, 0, 0, -1, 40, 678)" clip-path="url(#clip-path)">
+      <g id="Group_253" data-name="Group 253">
+        <g id="Group_252" data-name="Group 252" clip-path="url(#clip-path-2)">
+          <g id="Group_251" data-name="Group 251">
+            <g id="Group_250" data-name="Group 250" clip-path="url(#clip-path-3)">
+              <g id="Group_249" data-name="Group 249" style="isolation: isolate">
+                <g id="Group_248" data-name="Group 248">
+                  <g id="Group_247" data-name="Group 247" clip-path="url(#clip-path)">
+                    <g id="Group_246" data-name="Group 246">
+                      <g id="Group_245" data-name="Group 245" clip-path="url(#clip-path-5)">
+                        <g id="Group_244" data-name="Group 244">
+                          <g id="Group_243" data-name="Group 243" clip-path="url(#clip-path)">
+                            <rect id="Rectangle_125" data-name="Rectangle 125" width="28.913" height="30.556" transform="translate(-5.625 -25)" fill="#fc5a5a"/>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path id="Color_Overlay" data-name="Color Overlay" d="M29.875,697.444a3.735,3.735,0,0,1-3.937-3.5v-1.777a.844.844,0,0,1,1.688,0v1.777a2.079,2.079,0,0,0,2.25,1.833h6.187a2.079,2.079,0,0,0,2.25-1.833V681.5a2.079,2.079,0,0,0-2.25-1.833H29.875a2.079,2.079,0,0,0-2.25,1.833v1.778a.844.844,0,0,1-1.687,0V681.5a3.735,3.735,0,0,1,3.938-3.5h6.187A3.735,3.735,0,0,1,40,681.5v12.444a3.735,3.735,0,0,1-3.937,3.5Zm-5.04-7.1-2.25-2.222a.826.826,0,0,1,0-1.174l2.25-2.252a.851.851,0,0,1,1.193-.008.826.826,0,0,1,.008,1.179l-1.025,1.026h8.525a.833.833,0,1,1,0,1.666H25.413l.614.608a.825.825,0,0,1,0,1.177.85.85,0,0,1-1.193,0Z" fill="#fff"/>
+  </g>
+</svg>

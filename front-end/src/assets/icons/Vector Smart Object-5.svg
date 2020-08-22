@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="20" viewBox="0 0 16 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="crop" width="16" height="20" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_55" data-name="Path 55" d="M11.293,6.9v-1.8a3.223,3.223,0,1,0-6.445,0V6.9ZM1.823,8.742v9.44H14.177V8.742Zm1.2-1.818V5.094a5.045,5.045,0,1,1,10.089,0v1.83h1.428A1.464,1.464,0,0,1,16,8.4V18.528A1.464,1.464,0,0,1,14.543,20H1.457A1.464,1.464,0,0,1,0,18.528V8.4A1.464,1.464,0,0,1,1.457,6.924Z" fill="none" clip-rule="evenodd"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Rectangle_90" data-name="Rectangle 90" width="1600" height="1024" transform="translate(-1305 -447)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Vector_Smart_Object" data-name="Vector Smart Object" transform="translate(-24 -378)">
+    <g id="Vector_Smart_Object-2" data-name="Vector Smart Object" transform="translate(24 378)" clip-path="url(#clip-path)">
+      <g id="Group_178" data-name="Group 178">
+        <g id="Group_177" data-name="Group 177" clip-path="url(#clip-path-2)">
+          <g id="Group_176" data-name="Group 176">
+            <g id="Group_175" data-name="Group 175" clip-path="url(#clip-path-3)">
+              <rect id="Rectangle_89" data-name="Rectangle 89" width="26" height="30" transform="translate(-5 -5)" fill="#b5b5be"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path id="Color_Overlay" data-name="Color Overlay" d="M25.457,398A1.464,1.464,0,0,1,24,396.528V386.4a1.465,1.465,0,0,1,1.457-1.472h1.569v-1.83a5.045,5.045,0,1,1,10.089,0v1.83h1.428A1.465,1.465,0,0,1,40,386.4v10.132A1.464,1.464,0,0,1,38.543,398Zm.366-1.818H38.177v-9.44H25.824Zm3.025-13.088v1.8h6.445v-1.8a3.223,3.223,0,1,0-6.445,0Z" fill="#fff"/>
+  </g>
+</svg>

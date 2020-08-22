@@ -1,0 +1,34 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -i myapp/ server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "block_io": "^2.0.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "delay": "^4.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.7-alpha.3",
+    "firebase-admin": "^8.6.0",
+    "firebase-functions": "^3.3.0",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "mongodb": "^3.5.6",
+    "node-cron": "^2.0.3",
+    "nodemailer": "^6.4.11",
+    "request": "^2.88.2",
+    "socket.io": "^2.3.0",
+    "spdy": "^4.0.2"
+  }
+}

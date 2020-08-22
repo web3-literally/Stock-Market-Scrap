@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="19" viewBox="0 0 20 19">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="crop" width="20" height="19" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_48" data-name="Path 48" d="M4.545,3.619H2.727a.907.907,0,0,0-.909.9V7.238H18.182V4.524a.907.907,0,0,0-.909-.9h-.909a.909.909,0,0,1-1.818,0H6.364a.909.909,0,0,1-1.812.106ZM18.182,9.048H1.818v4.524A3.628,3.628,0,0,0,5.455,17.19h9.091a3.628,3.628,0,0,0,3.636-3.619ZM20,13.571A5.441,5.441,0,0,1,14.545,19H5.455A5.441,5.441,0,0,1,0,13.571V4.524A2.721,2.721,0,0,1,2.727,1.81H4.545V.9a.906.906,0,0,1,.8-.9L5.455,0a.907.907,0,0,1,.9.8L6.364.9v.9h8.182V.9a.906.906,0,0,1,.8-.9L15.455,0a.907.907,0,0,1,.9.8L16.364.9v.9h.909A2.721,2.721,0,0,1,20,4.524Z" fill="none" clip-rule="evenodd"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect id="Rectangle_80" data-name="Rectangle 80" width="1454.545" height="1045" transform="translate(-19.091 -275.048)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Vector_Smart_Object" data-name="Vector Smart Object" transform="translate(-20 -258)">
+    <g id="Vector_Smart_Object-2" data-name="Vector Smart Object" transform="translate(20 258)" clip-path="url(#clip-path)">
+      <g id="Group_158" data-name="Group 158">
+        <g id="Group_157" data-name="Group 157" clip-path="url(#clip-path-2)">
+          <g id="Group_156" data-name="Group 156">
+            <g id="Group_155" data-name="Group 155" clip-path="url(#clip-path-3)">
+              <rect id="Rectangle_79" data-name="Rectangle 79" width="29.091" height="28.048" transform="translate(-4.545 -4.524)" fill="#92929d"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    <path id="Color_Overlay" data-name="Color Overlay" d="M25.455,277A5.441,5.441,0,0,1,20,271.571v-9.048a2.721,2.721,0,0,1,2.727-2.714h1.819V258.9a.9.9,0,0,1,.8-.9l.107-.006a.907.907,0,0,1,.9.8l.006.105v.905h8.182V258.9a.906.906,0,0,1,.8-.9l.106-.006a.907.907,0,0,1,.9.8l.006.105v.905h.909A2.72,2.72,0,0,1,40,262.524v9.048A5.441,5.441,0,0,1,34.546,277Zm-3.637-5.429a3.628,3.628,0,0,0,3.637,3.62h9.091a3.628,3.628,0,0,0,3.636-3.62v-4.523H21.818Zm0-9.048v2.714H38.182v-2.714a.908.908,0,0,0-.909-.9h-.909a.909.909,0,0,1-1.818,0H26.364a.909.909,0,0,1-1.812.106l-.006-.106H22.727A.908.908,0,0,0,21.818,262.524Z" fill="#fff"/>
+  </g>
+</svg>

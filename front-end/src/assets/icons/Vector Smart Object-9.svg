@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="crop" width="20" height="20" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="Path_79" data-name="Path 79" d="M5.646,3.423a6.63,6.63,0,1,0,9.376,0A6.63,6.63,0,0,0,5.646,3.423Zm10.686-1.31a8.484,8.484,0,0,1,.78,11.1l3.347,3.347a.926.926,0,0,1-1.31,1.31l-3.306-3.307a8.482,8.482,0,1,1,.489-12.448Z" fill="none" clip-rule="evenodd"/>
+    </clipPath>
+  </defs>
+  <g id="Vector_Smart_Object" data-name="Vector Smart Object" transform="translate(-311 -31)">
+    <g id="Vector_Smart_Object-2" data-name="Vector Smart Object" transform="translate(311 31)" clip-path="url(#clip-path)">
+      <g id="Group_270" data-name="Group 270">
+        <g id="Group_269" data-name="Group 269" clip-path="url(#clip-path-2)">
+          <rect id="Rectangle_137" data-name="Rectangle 137" width="30.005" height="29.637" transform="translate(-3.704 -5.926)" fill="#92929d"/>
+        </g>
+      </g>
+    </g>
+    <path id="Color_Overlay" data-name="Color Overlay" d="M330.148,48.867l-3.306-3.307a8.482,8.482,0,1,1-8-14.561h4.973a8.484,8.484,0,0,1,4.291,13.211L331,47.1v2.029a.832.832,0,0,1-.205.025A.906.906,0,0,1,330.148,48.867Zm-13.5-14.444a6.628,6.628,0,1,0,4.687-1.942A6.629,6.629,0,0,0,316.646,34.423Z" fill="#818181"/>
+  </g>
+</svg>
