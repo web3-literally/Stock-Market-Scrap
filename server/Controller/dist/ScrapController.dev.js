@@ -294,7 +294,7 @@ function () {
                 updated_at = series[0].dateTime_str;
               }
 
-              console.log('updated_at', updated_at);
+              console.log("ID:".concat(company_id, " updated_at: ").concat(updated_at));
               /*this.db.collection("companies").updateOne({_id: company_id}, {
                   $set: {
                       // analysis_result: analysis_result,
