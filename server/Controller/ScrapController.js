@@ -188,25 +188,26 @@ class ScrapController {
             }, { upsert: true })
 
         } catch (e) {
-            console.log("wrong update", company_id, e)
+            console.log("***GetAnalysisByDate ***", company_id, e)
         }
         return result
     }
 
     async CalculateData() {
         let companies = await this.db.collection('companies').find().toArray()
-        console.log("CalculateData")
+        console.log("CalculateData START")
         for (const company of companies) {
             await this.GetAnalysisByDate(company._id).catch(e => {
                 console.log("*** CalculateData: ERROR ****", e)
             })
         }
+        console.log("---- CalculateData COMPLETE ----")
         return 0
     }
 
     async GetCompaniesTimeSeries() {
         let companies = await this.db.collection('companies').find().toArray();
-        console.log("GetCompaniesTimeSeries scrapping", companies.length)
+        console.log("GetCompaniesTimeSeries Scrapping", companies.length)
         for (const company of companies) {
             //console.log(url)
             try {
@@ -227,7 +228,7 @@ class ScrapController {
                 console.log(`*** GetCompaniesTimeSeries ID: ${company._id}: ERROR ***`)
             }
         }
-
+        console.log("---- GetCompaniesTimeSeries Scrapping : COMPLETE ----", companies.length)
         return 0
     }
 

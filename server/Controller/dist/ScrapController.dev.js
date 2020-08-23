@@ -324,7 +324,7 @@ function () {
             case 28:
               _context4.prev = 28;
               _context4.t0 = _context4["catch"](17);
-              console.log("wrong update", company_id, _context4.t0);
+              console.log("***GetAnalysisByDate ***", company_id, _context4.t0);
 
             case 31:
               return _context4.abrupt("return", result);
@@ -350,7 +350,7 @@ function () {
 
             case 2:
               companies = _context5.sent;
-              console.log("CalculateData");
+              console.log("CalculateData START");
               _iteratorNormalCompletion = true;
               _didIteratorError = false;
               _iteratorError = undefined;
@@ -409,9 +409,10 @@ function () {
               return _context5.finish(22);
 
             case 30:
+              console.log("---- CalculateData COMPLETE ----");
               return _context5.abrupt("return", 0);
 
-            case 31:
+            case 32:
             case "end":
               return _context5.stop();
           }
@@ -434,7 +435,7 @@ function () {
 
             case 2:
               companies = _context7.sent;
-              console.log("GetCompaniesTimeSeries scrapping", companies.length);
+              console.log("GetCompaniesTimeSeries Scrapping", companies.length);
               _iteratorNormalCompletion2 = true;
               _didIteratorError2 = false;
               _iteratorError2 = undefined;
@@ -593,9 +594,10 @@ function () {
               return _context7.finish(22);
 
             case 30:
+              console.log("---- GetCompaniesTimeSeries Scrapping : COMPLETE ----", companies.length);
               return _context7.abrupt("return", 0);
 
-            case 31:
+            case 32:
             case "end":
               return _context7.stop();
           }
