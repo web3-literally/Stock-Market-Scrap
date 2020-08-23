@@ -40,19 +40,19 @@ var settings = {};
 MongoClient.connect(db_url, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-}, function _callee8(err, client) {
+}, function _callee9(err, client) {
   var db, UserController, user_controller, ScrapController, scrapController;
-  return regeneratorRuntime.async(function _callee8$(_context8) {
+  return regeneratorRuntime.async(function _callee9$(_context9) {
     while (1) {
-      switch (_context8.prev = _context8.next) {
+      switch (_context9.prev = _context9.next) {
         case 0:
           if (!err) {
-            _context8.next = 3;
+            _context9.next = 3;
             break;
           }
 
           console.error(err);
-          return _context8.abrupt("return");
+          return _context9.abrupt("return");
 
         case 3:
           db = client.db(process.env.DB_NAME || "stock_db");
@@ -213,10 +213,25 @@ MongoClient.connect(db_url, {
               }
             }, null, null, [[0, 6]]);
           });
+          app.post("/CronTest", function _callee8(req, res) {
+            return regeneratorRuntime.async(function _callee8$(_context8) {
+              while (1) {
+                switch (_context8.prev = _context8.next) {
+                  case 0:
+                    console.log("------- Cron-Test -------");
+                    res.send("SUCCESS");
 
-        case 16:
+                  case 2:
+                  case "end":
+                    return _context8.stop();
+                }
+              }
+            });
+          });
+
+        case 17:
         case "end":
-          return _context8.stop();
+          return _context9.stop();
       }
     }
   });

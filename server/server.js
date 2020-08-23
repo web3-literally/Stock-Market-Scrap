@@ -69,4 +69,8 @@ MongoClient.connect(db_url, { useNewUrlParser: true, useUnifiedTopology: true },
             res.send("FAILED")
         }
     })
+    app.post("/CronTest", async(req, res) => {
+        console.log("------- Cron-Test -------")
+        res.send("SUCCESS")
+    })
 })
