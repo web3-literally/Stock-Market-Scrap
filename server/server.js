@@ -73,4 +73,18 @@ MongoClient.connect(db_url, { useNewUrlParser: true, useUnifiedTopology: true },
         console.log("------- Cron-Test -------")
         res.send("SUCCESS")
     })
+
+    app.post("/TestCalcData", async(req, res) => {
+        try {
+            await scrapController.CalculateData();
+            res.send("SUCCESS")
+        } catch (e) {
+            res.send("FAILED")
+        }
+    })
+    app.post("/CronTest", async(req, res) => {
+        console.log("------- Cron-Test -------")
+        res.send("SUCCESS")
+    })
+
 })

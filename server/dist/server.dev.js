@@ -40,19 +40,19 @@ var settings = {};
 MongoClient.connect(db_url, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-}, function _callee9(err, client) {
+}, function _callee11(err, client) {
   var db, UserController, user_controller, ScrapController, scrapController;
-  return regeneratorRuntime.async(function _callee9$(_context9) {
+  return regeneratorRuntime.async(function _callee11$(_context11) {
     while (1) {
-      switch (_context9.prev = _context9.next) {
+      switch (_context11.prev = _context11.next) {
         case 0:
           if (!err) {
-            _context9.next = 3;
+            _context11.next = 3;
             break;
           }
 
           console.error(err);
-          return _context9.abrupt("return");
+          return _context11.abrupt("return");
 
         case 3:
           db = client.db(process.env.DB_NAME || "stock_db");
@@ -228,10 +228,51 @@ MongoClient.connect(db_url, {
               }
             });
           });
+          app.post("/TestCalcData", function _callee9(req, res) {
+            return regeneratorRuntime.async(function _callee9$(_context9) {
+              while (1) {
+                switch (_context9.prev = _context9.next) {
+                  case 0:
+                    _context9.prev = 0;
+                    _context9.next = 3;
+                    return regeneratorRuntime.awrap(scrapController.CalculateData());
 
-        case 17:
+                  case 3:
+                    res.send("SUCCESS");
+                    _context9.next = 9;
+                    break;
+
+                  case 6:
+                    _context9.prev = 6;
+                    _context9.t0 = _context9["catch"](0);
+                    res.send("FAILED");
+
+                  case 9:
+                  case "end":
+                    return _context9.stop();
+                }
+              }
+            }, null, null, [[0, 6]]);
+          });
+          app.post("/CronTest", function _callee10(req, res) {
+            return regeneratorRuntime.async(function _callee10$(_context10) {
+              while (1) {
+                switch (_context10.prev = _context10.next) {
+                  case 0:
+                    console.log("------- Cron-Test -------");
+                    res.send("SUCCESS");
+
+                  case 2:
+                  case "end":
+                    return _context10.stop();
+                }
+              }
+            });
+          });
+
+        case 19:
         case "end":
-          return _context9.stop();
+          return _context11.stop();
       }
     }
   });
