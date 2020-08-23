@@ -65,7 +65,7 @@ MongoClient.connect(db_url, { useNewUrlParser: true, useUnifiedTopology: true },
         try {
             await scrapController.UpdateTotal();
             res.send("SUCCESS")
-        } catch {
+        } catch (e) {
             res.send("FAILED")
         }
     })
