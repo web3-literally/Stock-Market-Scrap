@@ -124,7 +124,7 @@ class ScrapController {
                 //console.log(max_price,min_price,high_avg,low_avg)
 
         } catch (e) {
-            console.log("*** GetAnalysis: ERROR ***")
+            console.log(`*** GetAnalysis ID: ${data.company_id}: ERROR ***`)
         }
         return {
             company_detail,
@@ -196,8 +196,8 @@ class ScrapController {
     async CalculateData() {
         let companies = await this.db.collection('companies').find().toArray()
         console.log("CalculateData START")
-        companies.forEach(async(company) => {
-            await this.GetAnalysisByDate(company._id).catch(e => {
+        companies.forEach(company => {
+            this.GetAnalysisByDate(company._id).catch(e => {
                 console.log("*** CalculateData: ERROR ****", e)
             })
         });
