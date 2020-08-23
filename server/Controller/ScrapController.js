@@ -124,7 +124,7 @@ class ScrapController {
                 //console.log(max_price,min_price,high_avg,low_avg)
 
         } catch (e) {
-
+            console.log("*** GetAnalysis: ERROR ***")
         }
         return {
             company_detail,
@@ -177,7 +177,7 @@ class ScrapController {
                         updated_at
                     }
                 })*/
-            this.db.collection("analysis_result").updateOne({ _id: company_id + '_' + updated_at }, {
+            await this.db.collection("analysis_result").updateOne({ _id: company_id + '_' + updated_at }, {
                 $set: {
                     analysis_result: analysis_result,
                     updated_at,
@@ -198,7 +198,7 @@ class ScrapController {
         console.log("CalculateData")
         for (const company of companies) {
             await this.GetAnalysisByDate(company._id).catch(e => {
-                console.log("calculate error", e)
+                console.log("*** CalculateData: ERROR ****", e)
             })
         }
         return 0
@@ -224,7 +224,7 @@ class ScrapController {
                 // series[series.length - 1].close}})
                 //console.log(series.length)
             } catch (e) {
-                //console.log("scraping error")
+                console.log(`*** GetCompaniesTimeSeries ID: ${company._id}: ERROR ***`)
             }
         }
 
@@ -241,11 +241,11 @@ class ScrapController {
                 //console.log(tag_data[key]);
                 let temp = tag_data[key]
                 temp._id = key
-                this.db.collection("tags").updateOne({ _id: temp._id }, { $set: temp }, { upsert: true })
+                await this.db.collection("tags").updateOne({ _id: temp._id }, { $set: temp }, { upsert: true })
                 await this.GetCompaniesByTag(key)
             }
         } catch (e) {
-            console.log("tags scrap error")
+            console.log("*** GetTags: ERROR ***")
         }
 
     }
@@ -264,7 +264,7 @@ class ScrapController {
                 }, { $set: { updated_at: new Date().toISOString() } }, { upsert: true })
             })
         } catch (e) {
-
+            console.log("*** GetCompaniesByTag: ERROR ***")
         }
     }
 
