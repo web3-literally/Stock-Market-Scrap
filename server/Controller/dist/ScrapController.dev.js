@@ -203,7 +203,7 @@ function () {
                 tp = max_price + layer * 5.5;
                 sl = max_price + layer * 0.5; //console.log(max_price,min_price,high_avg,low_avg)
               } catch (e) {
-                console.log("*** GetAnalysis ID: ".concat(data.company_id, ": ERROR ***"));
+                console.log("*** GetAnalysis: ERROR ***");
               }
 
               return _context3.abrupt("return", {
@@ -339,9 +339,8 @@ function () {
   }, {
     key: "CalculateData",
     value: function CalculateData() {
-      var _this = this;
+      var companies, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, company;
 
-      var companies;
       return regeneratorRuntime.async(function CalculateData$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
@@ -352,27 +351,80 @@ function () {
             case 2:
               companies = _context5.sent;
               console.log("CalculateData START");
-              companies.forEach(function (company) {
-                _this.GetAnalysisByDate(company._id)["catch"](function (e) {
-                  console.log("*** CalculateData: ERROR ****", e);
-                });
-              });
+              _iteratorNormalCompletion = true;
+              _didIteratorError = false;
+              _iteratorError = undefined;
+              _context5.prev = 7;
+              _iterator = companies[Symbol.iterator]();
+
+            case 9:
+              if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                _context5.next = 16;
+                break;
+              }
+
+              company = _step.value;
+              _context5.next = 13;
+              return regeneratorRuntime.awrap(this.GetAnalysisByDate(company._id)["catch"](function (e) {
+                console.log("*** CalculateData: ERROR ****", e);
+              }));
+
+            case 13:
+              _iteratorNormalCompletion = true;
+              _context5.next = 9;
+              break;
+
+            case 16:
+              _context5.next = 22;
+              break;
+
+            case 18:
+              _context5.prev = 18;
+              _context5.t0 = _context5["catch"](7);
+              _didIteratorError = true;
+              _iteratorError = _context5.t0;
+
+            case 22:
+              _context5.prev = 22;
+              _context5.prev = 23;
+
+              if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+                _iterator["return"]();
+              }
+
+            case 25:
+              _context5.prev = 25;
+
+              if (!_didIteratorError) {
+                _context5.next = 28;
+                break;
+              }
+
+              throw _iteratorError;
+
+            case 28:
+              return _context5.finish(25);
+
+            case 29:
+              return _context5.finish(22);
+
+            case 30:
               console.log("---- CalculateData COMPLETE ----");
               return _context5.abrupt("return", 0);
 
-            case 7:
+            case 32:
             case "end":
               return _context5.stop();
           }
         }
-      }, null, this);
+      }, null, this, [[7, 18, 22, 30], [23,, 25, 29]]);
     }
   }, {
     key: "GetCompaniesTimeSeries",
     value: function GetCompaniesTimeSeries() {
-      var _this2 = this;
+      var _this = this;
 
-      var companies, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _loop, _iterator, _step;
+      var companies, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _loop, _iterator2, _step2;
 
       return regeneratorRuntime.async(function GetCompaniesTimeSeries$(_context7) {
         while (1) {
@@ -384,19 +436,19 @@ function () {
             case 2:
               companies = _context7.sent;
               console.log("GetCompaniesTimeSeries Scrapping", companies.length);
-              _iteratorNormalCompletion = true;
-              _didIteratorError = false;
-              _iteratorError = undefined;
+              _iteratorNormalCompletion2 = true;
+              _didIteratorError2 = false;
+              _iteratorError2 = undefined;
               _context7.prev = 7;
 
               _loop = function _loop() {
-                var company, url, result, series, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, item;
+                var company, url, result, series, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item;
 
                 return regeneratorRuntime.async(function _loop$(_context6) {
                   while (1) {
                     switch (_context6.prev = _context6.next) {
                       case 0:
-                        company = _step.value;
+                        company = _step2.value;
                         _context6.prev = 1;
                         url = "https://api.shikiho.jp/timeseries/v1/timeseries/1/".concat(company._id, "?term=36m&addtionalFields=volume%2CsellMargin%2CbuyMargin&format=epocmilli&market=prime&cycle=d");
                         _context6.next = 5;
@@ -411,23 +463,23 @@ function () {
                       case 5:
                         result = _context6.sent;
                         series = result.data.series;
-                        _iteratorNormalCompletion2 = true;
-                        _didIteratorError2 = false;
-                        _iteratorError2 = undefined;
+                        _iteratorNormalCompletion3 = true;
+                        _didIteratorError3 = false;
+                        _iteratorError3 = undefined;
                         _context6.prev = 10;
-                        _iterator2 = series[Symbol.iterator]();
+                        _iterator3 = series[Symbol.iterator]();
 
                       case 12:
-                        if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                        if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
                           _context6.next = 21;
                           break;
                         }
 
-                        item = _step2.value;
+                        item = _step3.value;
                         item._id = company._id + "_" + item.dateTime_str;
                         item.company_id = company._id;
                         _context6.next = 18;
-                        return regeneratorRuntime.awrap(_this2.db.collection("series").updateOne({
+                        return regeneratorRuntime.awrap(_this.db.collection("series").updateOne({
                           _id: item._id
                         }, {
                           $set: item
@@ -436,7 +488,7 @@ function () {
                         }));
 
                       case 18:
-                        _iteratorNormalCompletion2 = true;
+                        _iteratorNormalCompletion3 = true;
                         _context6.next = 12;
                         break;
 
@@ -447,26 +499,26 @@ function () {
                       case 23:
                         _context6.prev = 23;
                         _context6.t0 = _context6["catch"](10);
-                        _didIteratorError2 = true;
-                        _iteratorError2 = _context6.t0;
+                        _didIteratorError3 = true;
+                        _iteratorError3 = _context6.t0;
 
                       case 27:
                         _context6.prev = 27;
                         _context6.prev = 28;
 
-                        if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-                          _iterator2["return"]();
+                        if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+                          _iterator3["return"]();
                         }
 
                       case 30:
                         _context6.prev = 30;
 
-                        if (!_didIteratorError2) {
+                        if (!_didIteratorError3) {
                           _context6.next = 33;
                           break;
                         }
 
-                        throw _iteratorError2;
+                        throw _iteratorError3;
 
                       case 33:
                         return _context6.finish(30);
@@ -491,10 +543,10 @@ function () {
                 }, null, null, [[1, 37], [10, 23, 27, 35], [28,, 30, 34]]);
               };
 
-              _iterator = companies[Symbol.iterator]();
+              _iterator2 = companies[Symbol.iterator]();
 
             case 10:
-              if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+              if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
                 _context7.next = 16;
                 break;
               }
@@ -503,7 +555,7 @@ function () {
               return regeneratorRuntime.awrap(_loop());
 
             case 13:
-              _iteratorNormalCompletion = true;
+              _iteratorNormalCompletion2 = true;
               _context7.next = 10;
               break;
 
@@ -514,26 +566,26 @@ function () {
             case 18:
               _context7.prev = 18;
               _context7.t0 = _context7["catch"](7);
-              _didIteratorError = true;
-              _iteratorError = _context7.t0;
+              _didIteratorError2 = true;
+              _iteratorError2 = _context7.t0;
 
             case 22:
               _context7.prev = 22;
               _context7.prev = 23;
 
-              if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-                _iterator["return"]();
+              if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+                _iterator2["return"]();
               }
 
             case 25:
               _context7.prev = 25;
 
-              if (!_didIteratorError) {
+              if (!_didIteratorError2) {
                 _context7.next = 28;
                 break;
               }
 
-              throw _iteratorError;
+              throw _iteratorError2;
 
             case 28:
               return _context7.finish(25);
