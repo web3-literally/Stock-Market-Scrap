@@ -7,20 +7,31 @@ class ScrapController {
         this.db = db;
         this.init();
 
-        schedule('* */12 * * *', async () => {
+        schedule('0 1 * * *', async () => {
             await this.GetTags()
+        }).start()
+        schedule('0 6 * * *', async () => {
             await this.GetCompaniesTimeSeries()
+        }).start()
+        schedule('0 12 * * *', async () => {
             await this.CalculateData()
         }).start()
     }
 
     async init() {
         //await this.GetCompaniesTimeSeries()
-        //await this.CalculateData()
-        await this.GetTags()
+        await this.CalculateData()
+        //await this.GetTags()
     }
 
-    async ReadCompanies() {
+    async ReadCompanies({str_query='',skip=0,limit=10}) {
+        let regex=""
+        regex=".*"+str_query+".*"
+        console.log("regex",regex,str_query,skip,limit)
+
+        let companies=await this.db.collection('companies').find({
+            "name" : {$regex : regex}
+        }).toArray()
         let result = await this.db.collection('companies').aggregate([
             /*{
                 $lookup: {
@@ -33,6 +44,17 @@ class ScrapController {
             {
                 $unwind: "$tag"
             },*/
+            {
+                $match: {
+                    "name" : {$regex : regex}
+                }
+            },
+            {
+                $skip: skip,
+            },
+            {
+                $limit: limit
+            },
             {
                 $lookup: {
                     from: "analysis_result",
@@ -50,8 +72,8 @@ class ScrapController {
                                 },
                             }
                         },
-                        {$sort:{"created_at":-1}},
-                        {$limit:1}
+                        {$sort: {"created_at": -1}},
+                        {$limit: 1}
                     ],
                     as: "analysis_result"
                 }
@@ -61,7 +83,10 @@ class ScrapController {
             },*/
         ]).toArray()
         console.log('read companies', result.length)
-        return result
+        return {
+            total_count:companies.length,
+            result
+        }
     }
 
     async GetAnalysis(data) {
@@ -172,7 +197,8 @@ class ScrapController {
                 $set: {
                     analysis_result: analysis_result,
                     updated_at,
-                    created_at:new Date().toISOString(),
+                    current_stock: series[0],
+                    created_at: new Date().toISOString(),
                     company_id
                 }
             }, {upsert: true})
@@ -184,7 +210,7 @@ class ScrapController {
     }
 
     async CalculateData() {
-        let companies = await this.ReadCompanies()
+        let companies = await this.db.collection('companies').find().toArray()
         console.log("CalculateData")
         for (const company of companies) {
             await this.GetAnalysisByDate(company._id).catch(e => {
@@ -249,7 +275,10 @@ class ScrapController {
             //console.log(result)
             result.forEach(item => {
                 //console.log(item)
-                this.db.collection('company_tag').updateOne({tag_key:tag_key,company_id:item.stockCode},{$set:{updated_at:new Date().toISOString()}},{upsert:true})
+                this.db.collection('company_tag').updateOne({
+                    tag_key: tag_key,
+                    company_id: item.stockCode
+                }, {$set: {updated_at: new Date().toISOString()}}, {upsert: true})
             })
         } catch (e) {
 

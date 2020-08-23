@@ -1,22 +1,23 @@
 <template>
   <div>
     <h2 class="py-2 mx-4">Companies</h2>
-    <v-card  class="rounded-lg" :elevation="3">
+    <v-card class="rounded-lg" :elevation="3">
       <v-data-table
         :headers="companyTable.headers"
         :items="companyTable.desserts"
-        :search="companyTable.search"
         :expanded.sync="companyTable.expanded"
         :loading="companyTable.isload"
+        hide-default-footer
         item-key="_id"
       >
         <template v-slot:top>
           <div>
-            <v-toolbar flat color="" >
+            <v-toolbar flat color="">
               <!--<v-toolbar-title>Users</v-toolbar-title>-->
               <div>
                 <v-text-field
                   v-model="companyTable.search"
+                  @change="read"
                   append-icon="mdi-magnify"
                   label="Search"
                   single-line
@@ -102,7 +103,8 @@
             <v-icon
               small
               dark
-            >fas fa-chart-line</v-icon>
+            >fas fa-chart-line
+            </v-icon>
           </v-btn>
         </template>
         <template v-slot:expanded-item="{ headers, item }">
@@ -111,17 +113,26 @@
           </td>
         </template>
       </v-data-table>
+      <v-pagination
+        v-model="page"
+        class="my-4"
+        :length="total_count"
+        :total-visible="10"
+      ></v-pagination>
     </v-card>
   </div>
 </template>
 
 <script>
 import CompanyAnalysis from '../components/CompanyAnalysis'
+
 export default {
   name: 'Companies',
   components: { CompanyAnalysis },
   data () {
     return {
+      page: 1,
+      total_count: 0,
       companyTable: {
         isload: false,
         editedIndex: -1,
@@ -141,7 +152,7 @@ export default {
           { text: 'Market', value: 'market', width: '100px' },
           { text: 'Big Category', value: 'big_category', width: '150px' },
           { text: 'Small Category', value: 'small_category', width: '180px' },
-          // { text: 'Stock Price', value: 'stock_price', width: '150px' },
+          { text: 'Stock Price', value: 'analysis_result.0.current_stock.close', width: '150px' },
 
           { text: 'Updated At', value: 'updated_at', width: '150px' },
 
@@ -161,22 +172,38 @@ export default {
           { text: '7-PastStockPrice', value: 'analysis_result.0.analysis_result.day_7.psp', width: '180px' },
 
           { text: '14-RSP', value: 'analysis_result.0.analysis_result.day_14.rsp', width: '180px' },
-          { text: '14-Bollinger-Band', value: 'analysis_result.0.analysis_result.day_14.bollinger_band', width: '180px' },
+          {
+            text: '14-Bollinger-Band',
+            value: 'analysis_result.0.analysis_result.day_14.bollinger_band',
+            width: '180px'
+          },
           { text: '14-TP/SL', value: 'analysis_result.0.analysis_result.day_14.tp_sl', width: '180px' },
           { text: '14-PastStockPrice', value: 'analysis_result.0.analysis_result.day_14.psp', width: '180px' },
 
           { text: '28-RSP', value: 'analysis_result.0.analysis_result.day_28.rsp', width: '180px' },
-          { text: '28-Bollinger-Band', value: 'analysis_result.0.analysis_result.day_28.bollinger_band', width: '180px' },
+          {
+            text: '28-Bollinger-Band',
+            value: 'analysis_result.0.analysis_result.day_28.bollinger_band',
+            width: '180px'
+          },
           { text: '28-TP/SL', value: 'analysis_result.0.analysis_result.day_28.tp_sl', width: '180px' },
           { text: '28-PastStockPrice', value: 'analysis_result.0.analysis_result.day_28.psp', width: '180px' },
 
           { text: '60-RSP', value: 'analysis_result.0.analysis_result.day_60.rsp', width: '180px' },
-          { text: '60-Bollinger-Band', value: 'analysis_result.0.analysis_result.day_60.bollinger_band', width: '180px' },
+          {
+            text: '60-Bollinger-Band',
+            value: 'analysis_result.0.analysis_result.day_60.bollinger_band',
+            width: '180px'
+          },
           { text: '60-TP/SL', value: 'analysis_result.0.analysis_result.day_60.tp_sl', width: '180px' },
           { text: '60-PastStockPrice', value: 'analysis_result.0.analysis_result.day_60.psp', width: '180px' },
 
           { text: '90-RSP', value: 'analysis_result.0.analysis_result.day_90.rsp', width: '180px' },
-          { text: '90-Bollinger-Band', value: 'analysis_result.0.analysis_result.day_90.bollinger_band', width: '180px' },
+          {
+            text: '90-Bollinger-Band',
+            value: 'analysis_result.0.analysis_result.day_90.bollinger_band',
+            width: '180px'
+          },
           { text: '90-TP/SL', value: 'analysis_result.0.analysis_result.day_90.tp_sl', width: '180px' },
           { text: '90-PastStockPrice', value: 'analysis_result.0.analysis_result.day_90.psp', width: '180px' },
 
@@ -206,6 +233,15 @@ export default {
       return this.companyTable.editedIndex === -1 ? 'New Company' : 'Edit Company'
     }
   },
+  watch: {
+    page: {
+      handler: function (val, oldVal) {
+        console.log(val, oldVal)
+        this.read() // call it in the context of your component object
+      },
+      deep: true
+    }
+  },
   created () {
     this.read()
   },
@@ -215,32 +251,33 @@ export default {
         color: '#f00',
         text: 'Non-Updated'
       }
-      if (item.analysis_result.length<1){
+      if (item.analysis_result.length < 1) {
         return result
       }
       if (item.analysis_result[0].updated_at === undefined) {
         return result
       }
       try {
-        const updated_at = item.analysis_result[0].updated_at
-        const c_date = new Date().getDate()
-        const u_data = new Date(updated_at).getDate()
-        console.log(updated_at)
-        if (updated_at === '') {
+        const updatedAt = item.analysis_result[0].updated_at
+        const cDate = new Date().getDate()
+        const uData = new Date(updatedAt).getDate()
+        // console.log(updated_at)
+        if (updatedAt === '') {
           return {
             color: '#f00',
             text: 'Non-Updated'
           }
         } else {
-          if (c_date - 1 != u_data) {
+          // eslint-disable-next-line camelcase
+          if (cDate - 1 !== uData) {
             return {
               color: '#ee770f',
-              text: updated_at
+              text: updatedAt
             }
           } else {
             return {
               color: '#50c127',
-              text: updated_at
+              text: updatedAt
             }
           }
         }
@@ -251,16 +288,21 @@ export default {
     },
     read () {
       this.companyTable.isload = true
-      window.axios.post('/companies/read').then(({ data }) => {
-        this.companyTable.desserts = data
-        this.companyTable.isload = false
-      }).catch(e => {
-        this.companyTable.isload = false
-      })
+      window.axios.post('/companies/read', { skip: (this.page-1) * 10, str_query: this.companyTable.search,limit:10 })
+        .then(({ data }) => {
+          this.companyTable.desserts = data.result
+          this.total_count = parseInt((data.total_count / 10))
+          this.companyTable.isload = false
+        }).catch(e => {
+          this.companyTable.isload = false
+        })
     },
     save () {
       const senddata = this.companyTable.editedItem
-      window.axios.post('/company/save', { account: senddata, uid: this.$store.state.userData.auth.uid }).then(({ data }) => {
+      window.axios.post('/company/save', {
+        account: senddata,
+        uid: this.$store.state.userData.auth.uid
+      }).then(({ data }) => {
         if (this.companyTable.editedIndex > -1) {
           const self = this
           Object.assign(self.companyTable.desserts[self.companyTable.editedIndex], data.result)
@@ -285,8 +327,8 @@ export default {
 }
 </script>
 
-<style >
-.t_item{
-  height: 66px!important;
-}
+<style>
+  .t_item {
+    height: 66px !important;
+  }
 </style>
