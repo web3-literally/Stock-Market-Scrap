@@ -196,11 +196,11 @@ class ScrapController {
     async CalculateData() {
         let companies = await this.db.collection('companies').find().toArray()
         console.log("CalculateData START")
-        for (const company of companies) {
+        companies.forEach(async(company) => {
             await this.GetAnalysisByDate(company._id).catch(e => {
                 console.log("*** CalculateData: ERROR ****", e)
             })
-        }
+        });
         console.log("---- CalculateData COMPLETE ----")
         return 0
     }

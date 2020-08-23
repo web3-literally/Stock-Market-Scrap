@@ -339,119 +339,79 @@ function () {
   }, {
     key: "CalculateData",
     value: function CalculateData() {
-      var companies, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, company;
+      var _this = this;
 
-      return regeneratorRuntime.async(function CalculateData$(_context5) {
+      var companies;
+      return regeneratorRuntime.async(function CalculateData$(_context6) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
-              _context5.next = 2;
+              _context6.next = 2;
               return regeneratorRuntime.awrap(this.db.collection('companies').find().toArray());
 
             case 2:
-              companies = _context5.sent;
+              companies = _context6.sent;
               console.log("CalculateData START");
-              _iteratorNormalCompletion = true;
-              _didIteratorError = false;
-              _iteratorError = undefined;
-              _context5.prev = 7;
-              _iterator = companies[Symbol.iterator]();
+              companies.forEach(function _callee(company) {
+                return regeneratorRuntime.async(function _callee$(_context5) {
+                  while (1) {
+                    switch (_context5.prev = _context5.next) {
+                      case 0:
+                        _context5.next = 2;
+                        return regeneratorRuntime.awrap(_this.GetAnalysisByDate(company._id)["catch"](function (e) {
+                          console.log("*** CalculateData: ERROR ****", e);
+                        }));
 
-            case 9:
-              if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                _context5.next = 16;
-                break;
-              }
-
-              company = _step.value;
-              _context5.next = 13;
-              return regeneratorRuntime.awrap(this.GetAnalysisByDate(company._id)["catch"](function (e) {
-                console.log("*** CalculateData: ERROR ****", e);
-              }));
-
-            case 13:
-              _iteratorNormalCompletion = true;
-              _context5.next = 9;
-              break;
-
-            case 16:
-              _context5.next = 22;
-              break;
-
-            case 18:
-              _context5.prev = 18;
-              _context5.t0 = _context5["catch"](7);
-              _didIteratorError = true;
-              _iteratorError = _context5.t0;
-
-            case 22:
-              _context5.prev = 22;
-              _context5.prev = 23;
-
-              if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-                _iterator["return"]();
-              }
-
-            case 25:
-              _context5.prev = 25;
-
-              if (!_didIteratorError) {
-                _context5.next = 28;
-                break;
-              }
-
-              throw _iteratorError;
-
-            case 28:
-              return _context5.finish(25);
-
-            case 29:
-              return _context5.finish(22);
-
-            case 30:
+                      case 2:
+                      case "end":
+                        return _context5.stop();
+                    }
+                  }
+                });
+              });
               console.log("---- CalculateData COMPLETE ----");
-              return _context5.abrupt("return", 0);
+              return _context6.abrupt("return", 0);
 
-            case 32:
+            case 7:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
-      }, null, this, [[7, 18, 22, 30], [23,, 25, 29]]);
+      }, null, this);
     }
   }, {
     key: "GetCompaniesTimeSeries",
     value: function GetCompaniesTimeSeries() {
-      var _this = this;
+      var _this2 = this;
 
-      var companies, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _loop, _iterator2, _step2;
+      var companies, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _loop, _iterator, _step;
 
-      return regeneratorRuntime.async(function GetCompaniesTimeSeries$(_context7) {
+      return regeneratorRuntime.async(function GetCompaniesTimeSeries$(_context8) {
         while (1) {
-          switch (_context7.prev = _context7.next) {
+          switch (_context8.prev = _context8.next) {
             case 0:
-              _context7.next = 2;
+              _context8.next = 2;
               return regeneratorRuntime.awrap(this.db.collection('companies').find().toArray());
 
             case 2:
-              companies = _context7.sent;
+              companies = _context8.sent;
               console.log("GetCompaniesTimeSeries Scrapping", companies.length);
-              _iteratorNormalCompletion2 = true;
-              _didIteratorError2 = false;
-              _iteratorError2 = undefined;
-              _context7.prev = 7;
+              _iteratorNormalCompletion = true;
+              _didIteratorError = false;
+              _iteratorError = undefined;
+              _context8.prev = 7;
 
               _loop = function _loop() {
-                var company, url, result, series, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, item;
+                var company, url, result, series, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, item;
 
-                return regeneratorRuntime.async(function _loop$(_context6) {
+                return regeneratorRuntime.async(function _loop$(_context7) {
                   while (1) {
-                    switch (_context6.prev = _context6.next) {
+                    switch (_context7.prev = _context7.next) {
                       case 0:
-                        company = _step2.value;
-                        _context6.prev = 1;
+                        company = _step.value;
+                        _context7.prev = 1;
                         url = "https://api.shikiho.jp/timeseries/v1/timeseries/1/".concat(company._id, "?term=36m&addtionalFields=volume%2CsellMargin%2CbuyMargin&format=epocmilli&market=prime&cycle=d");
-                        _context6.next = 5;
+                        _context7.next = 5;
                         return regeneratorRuntime.awrap(axios.get(url, {
                           headers: {
                             "authorization": "clie5aezWyjER92iNgJb0XPMXnDvBpp1Ad5W"
@@ -461,25 +421,25 @@ function () {
                         }));
 
                       case 5:
-                        result = _context6.sent;
+                        result = _context7.sent;
                         series = result.data.series;
-                        _iteratorNormalCompletion3 = true;
-                        _didIteratorError3 = false;
-                        _iteratorError3 = undefined;
-                        _context6.prev = 10;
-                        _iterator3 = series[Symbol.iterator]();
+                        _iteratorNormalCompletion2 = true;
+                        _didIteratorError2 = false;
+                        _iteratorError2 = undefined;
+                        _context7.prev = 10;
+                        _iterator2 = series[Symbol.iterator]();
 
                       case 12:
-                        if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
-                          _context6.next = 21;
+                        if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                          _context7.next = 21;
                           break;
                         }
 
-                        item = _step3.value;
+                        item = _step2.value;
                         item._id = company._id + "_" + item.dateTime_str;
                         item.company_id = company._id;
-                        _context6.next = 18;
-                        return regeneratorRuntime.awrap(_this.db.collection("series").updateOne({
+                        _context7.next = 18;
+                        return regeneratorRuntime.awrap(_this2.db.collection("series").updateOne({
                           _id: item._id
                         }, {
                           $set: item
@@ -488,118 +448,118 @@ function () {
                         }));
 
                       case 18:
-                        _iteratorNormalCompletion3 = true;
-                        _context6.next = 12;
+                        _iteratorNormalCompletion2 = true;
+                        _context7.next = 12;
                         break;
 
                       case 21:
-                        _context6.next = 27;
+                        _context7.next = 27;
                         break;
 
                       case 23:
-                        _context6.prev = 23;
-                        _context6.t0 = _context6["catch"](10);
-                        _didIteratorError3 = true;
-                        _iteratorError3 = _context6.t0;
+                        _context7.prev = 23;
+                        _context7.t0 = _context7["catch"](10);
+                        _didIteratorError2 = true;
+                        _iteratorError2 = _context7.t0;
 
                       case 27:
-                        _context6.prev = 27;
-                        _context6.prev = 28;
+                        _context7.prev = 27;
+                        _context7.prev = 28;
 
-                        if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-                          _iterator3["return"]();
+                        if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+                          _iterator2["return"]();
                         }
 
                       case 30:
-                        _context6.prev = 30;
+                        _context7.prev = 30;
 
-                        if (!_didIteratorError3) {
-                          _context6.next = 33;
+                        if (!_didIteratorError2) {
+                          _context7.next = 33;
                           break;
                         }
 
-                        throw _iteratorError3;
+                        throw _iteratorError2;
 
                       case 33:
-                        return _context6.finish(30);
+                        return _context7.finish(30);
 
                       case 34:
-                        return _context6.finish(27);
+                        return _context7.finish(27);
 
                       case 35:
-                        _context6.next = 40;
+                        _context7.next = 40;
                         break;
 
                       case 37:
-                        _context6.prev = 37;
-                        _context6.t1 = _context6["catch"](1);
+                        _context7.prev = 37;
+                        _context7.t1 = _context7["catch"](1);
                         console.log("*** GetCompaniesTimeSeries ID: ".concat(company._id, ": ERROR ***"));
 
                       case 40:
                       case "end":
-                        return _context6.stop();
+                        return _context7.stop();
                     }
                   }
                 }, null, null, [[1, 37], [10, 23, 27, 35], [28,, 30, 34]]);
               };
 
-              _iterator2 = companies[Symbol.iterator]();
+              _iterator = companies[Symbol.iterator]();
 
             case 10:
-              if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-                _context7.next = 16;
+              if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                _context8.next = 16;
                 break;
               }
 
-              _context7.next = 13;
+              _context8.next = 13;
               return regeneratorRuntime.awrap(_loop());
 
             case 13:
-              _iteratorNormalCompletion2 = true;
-              _context7.next = 10;
+              _iteratorNormalCompletion = true;
+              _context8.next = 10;
               break;
 
             case 16:
-              _context7.next = 22;
+              _context8.next = 22;
               break;
 
             case 18:
-              _context7.prev = 18;
-              _context7.t0 = _context7["catch"](7);
-              _didIteratorError2 = true;
-              _iteratorError2 = _context7.t0;
+              _context8.prev = 18;
+              _context8.t0 = _context8["catch"](7);
+              _didIteratorError = true;
+              _iteratorError = _context8.t0;
 
             case 22:
-              _context7.prev = 22;
-              _context7.prev = 23;
+              _context8.prev = 22;
+              _context8.prev = 23;
 
-              if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-                _iterator2["return"]();
+              if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+                _iterator["return"]();
               }
 
             case 25:
-              _context7.prev = 25;
+              _context8.prev = 25;
 
-              if (!_didIteratorError2) {
-                _context7.next = 28;
+              if (!_didIteratorError) {
+                _context8.next = 28;
                 break;
               }
 
-              throw _iteratorError2;
+              throw _iteratorError;
 
             case 28:
-              return _context7.finish(25);
+              return _context8.finish(25);
 
             case 29:
-              return _context7.finish(22);
+              return _context8.finish(22);
 
             case 30:
               console.log("---- GetCompaniesTimeSeries Scrapping : COMPLETE ----", companies.length);
-              return _context7.abrupt("return", 0);
+              return _context8.abrupt("return", 0);
 
             case 32:
             case "end":
-              return _context7.stop();
+              return _context8.stop();
           }
         }
       }, null, this, [[7, 18, 22, 30], [23,, 25, 29]]);
@@ -608,14 +568,14 @@ function () {
     key: "GetTags",
     value: function GetTags() {
       var url, tags, tag_data, key, temp;
-      return regeneratorRuntime.async(function GetTags$(_context8) {
+      return regeneratorRuntime.async(function GetTags$(_context9) {
         while (1) {
-          switch (_context8.prev = _context8.next) {
+          switch (_context9.prev = _context9.next) {
             case 0:
               console.log("tags scraping");
-              _context8.prev = 1;
+              _context9.prev = 1;
               url = "https://api.shikiho.jp/screening/v1/headwords/count";
-              _context8.next = 5;
+              _context9.next = 5;
               return regeneratorRuntime.awrap(axios.get(url, {
                 headers: {
                   "authorization": "709e14b2b9fdba0e93c5171bc7dcdbd5"
@@ -623,21 +583,21 @@ function () {
               }));
 
             case 5:
-              tags = _context8.sent;
+              tags = _context9.sent;
               tag_data = tags.data.headwords;
-              _context8.t0 = regeneratorRuntime.keys(tag_data);
+              _context9.t0 = regeneratorRuntime.keys(tag_data);
 
             case 8:
-              if ((_context8.t1 = _context8.t0()).done) {
-                _context8.next = 18;
+              if ((_context9.t1 = _context9.t0()).done) {
+                _context9.next = 18;
                 break;
               }
 
-              key = _context8.t1.value;
+              key = _context9.t1.value;
               //console.log(tag_data[key]);
               temp = tag_data[key];
               temp._id = key;
-              _context8.next = 14;
+              _context9.next = 14;
               return regeneratorRuntime.awrap(this.db.collection("tags").updateOne({
                 _id: temp._id
               }, {
@@ -647,25 +607,25 @@ function () {
               }));
 
             case 14:
-              _context8.next = 16;
+              _context9.next = 16;
               return regeneratorRuntime.awrap(this.GetCompaniesByTag(key));
 
             case 16:
-              _context8.next = 8;
+              _context9.next = 8;
               break;
 
             case 18:
-              _context8.next = 23;
+              _context9.next = 23;
               break;
 
             case 20:
-              _context8.prev = 20;
-              _context8.t2 = _context8["catch"](1);
+              _context9.prev = 20;
+              _context9.t2 = _context9["catch"](1);
               console.log("*** GetTags: ERROR ***");
 
             case 23:
             case "end":
-              return _context8.stop();
+              return _context9.stop();
           }
         }
       }, null, this, [[1, 20]]);
@@ -674,13 +634,13 @@ function () {
     key: "GetCompaniesByTag",
     value: function GetCompaniesByTag(tag_key) {
       var url, api_result, result, item;
-      return regeneratorRuntime.async(function GetCompaniesByTag$(_context9) {
+      return regeneratorRuntime.async(function GetCompaniesByTag$(_context10) {
         while (1) {
-          switch (_context9.prev = _context9.next) {
+          switch (_context10.prev = _context10.next) {
             case 0:
-              _context9.prev = 0;
+              _context10.prev = 0;
               url = "https://api.shikiho.jp/screening/v1/headwords?headword=".concat(tag_key);
-              _context9.next = 4;
+              _context10.next = 4;
               return regeneratorRuntime.awrap(axios.get(url, {
                 headers: {
                   "authorization": "709e14b2b9fdba0e93c5171bc7dcdbd5"
@@ -688,22 +648,22 @@ function () {
               }));
 
             case 4:
-              api_result = _context9.sent;
-              _context9.next = 7;
+              api_result = _context10.sent;
+              _context10.next = 7;
               return regeneratorRuntime.awrap(api_result.data.result);
 
             case 7:
-              result = _context9.sent;
-              _context9.t0 = regeneratorRuntime.keys(result);
+              result = _context10.sent;
+              _context10.t0 = regeneratorRuntime.keys(result);
 
             case 9:
-              if ((_context9.t1 = _context9.t0()).done) {
-                _context9.next = 15;
+              if ((_context10.t1 = _context10.t0()).done) {
+                _context10.next = 15;
                 break;
               }
 
-              item = _context9.t1.value;
-              _context9.next = 13;
+              item = _context10.t1.value;
+              _context10.next = 13;
               return regeneratorRuntime.awrap(this.db.collection('company_tag').updateOne({
                 tag_key: tag_key,
                 company_id: item.stockCode
@@ -716,21 +676,21 @@ function () {
               }));
 
             case 13:
-              _context9.next = 9;
+              _context10.next = 9;
               break;
 
             case 15:
-              _context9.next = 20;
+              _context10.next = 20;
               break;
 
             case 17:
-              _context9.prev = 17;
-              _context9.t2 = _context9["catch"](0);
+              _context10.prev = 17;
+              _context10.t2 = _context10["catch"](0);
               console.log("*** GetCompaniesByTag: ERROR ***");
 
             case 20:
             case "end":
-              return _context9.stop();
+              return _context10.stop();
           }
         }
       }, null, this, [[0, 17]]);
