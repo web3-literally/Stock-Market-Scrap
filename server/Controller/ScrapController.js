@@ -256,13 +256,12 @@ class ScrapController {
             let api_result = await axios.get(url, { headers: { "authorization": "709e14b2b9fdba0e93c5171bc7dcdbd5" } })
             let result = await api_result.data.result
                 //console.log(result)
-            result.forEach(item => {
-                //console.log(item)
+            for (var item in result) {
                 await this.db.collection('company_tag').updateOne({
                     tag_key: tag_key,
                     company_id: item.stockCode
                 }, { $set: { updated_at: new Date().toISOString() } }, { upsert: true })
-            })
+            }
         } catch (e) {
             console.log("*** GetCompaniesByTag: ERROR ***")
         }
