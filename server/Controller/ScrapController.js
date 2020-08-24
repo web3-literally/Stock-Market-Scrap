@@ -139,7 +139,7 @@ class ScrapController {
                 //console.log(max_price,min_price,high_avg,low_avg)
 
         } catch (e) {
-            console.log("*** GetAnalysis: ERROR ***")
+            console.log("*** GetAnalysis: ERROR ***", e)
         }
         return {
             company_detail,

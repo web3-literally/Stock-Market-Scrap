@@ -223,7 +223,7 @@ function () {
                 tp = max_price + layer * 5.5;
                 sl = max_price + layer * 0.5; //console.log(max_price,min_price,high_avg,low_avg)
               } catch (e) {
-                console.log("*** GetAnalysis: ERROR ***");
+                console.log("*** GetAnalysis: ERROR ***", e);
               }
 
               return _context3.abrupt("return", {
