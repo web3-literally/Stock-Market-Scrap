@@ -3,8 +3,8 @@ let express = require('express');
 const cors = require('cors')
 const app = express();
 require('dotenv').config()
-const PORT = process.env.PORT||3000;
-const server = app.listen(PORT, function () {
+const PORT = process.env.PORT || 3000;
+const server = app.listen(PORT, function() {
     console.log('Server is running on PORT:', PORT);
 });
 
@@ -15,8 +15,8 @@ app.use(cors())
 
 
 
-app.use(bodyParser.json({limit: '500mb'}));
-app.use(bodyParser.urlencoded({limit: "500mb", extended: true, parameterLimit: 50000}));
+app.use(bodyParser.json({ limit: '500mb' }));
+app.use(bodyParser.urlencoded({ limit: "500mb", extended: true, parameterLimit: 50000 }));
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 const MongoClient = require('mongodb').MongoClient;
@@ -25,41 +25,66 @@ const ObjectId = require('mongodb').ObjectID;
 const db_url = process.env.DB_URL;
 
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
     res.status(200).send('testing api12');
 });
 
 let settings = {}
 
-MongoClient.connect(db_url, {useNewUrlParser: true, useUnifiedTopology: true}, async (err, client) => {
+MongoClient.connect(db_url, { useNewUrlParser: true, useUnifiedTopology: true }, async(err, client) => {
     if (err) {
         console.error(err)
         return
     }
-    const db = client.db(process.env.DB_NAME||"stock_db")
+    const db = client.db(process.env.DB_NAME || "stock_db")
     console.log('connected db')
-    let UserController=require('./Controller/UserController')
-    let user_controller=new UserController(db)
-    let ScrapController=require('./Controller/ScrapController')
-    let scrapController=new ScrapController(db)
+    let UserController = require('./Controller/UserController')
+    let user_controller = new UserController(db)
+    let ScrapController = require('./Controller/ScrapController')
+    let scrapController = new ScrapController(db)
 
-    app.post("/signup", async (req, res) => {
+    app.post("/signup", async(req, res) => {
         res.send(await user_controller.SignUp(req))
     })
-    app.post("/signin", async (req, res) => {
+    app.post("/signin", async(req, res) => {
         res.send(await user_controller.SignIn(req))
     })
-    app.post("/CheckLogin", async (req, res) => {
+    app.post("/CheckLogin", async(req, res) => {
         res.send(await user_controller.CheckLogin(req.body))
     })
-    app.post("/companies/read", async (req, res) => {
+    app.post("/companies/read", async(req, res) => {
         res.send(await scrapController.ReadCompanies(req.body))
     })
-    app.post("/companies/getAnalysis", async (req, res) => {
+    app.post("/companies/getAnalysis", async(req, res) => {
         res.send(await scrapController.GetAnalysis(req.body))
     })
-    app.post("/companies/GetAnalysisByDate", async (req, res) => {
+    app.post("/companies/GetAnalysisByDate", async(req, res) => {
         res.send(await scrapController.GetAnalysisByDate(req.body.company_id))
+    })
+    app.post("/UpdateTotal", async(req, res) => {
+        try {
+            await scrapController.UpdateTotal();
+            res.send("SUCCESS")
+        } catch (e) {
+            res.send("FAILED")
+        }
+    })
+    app.post("/CronTest", async(req, res) => {
+        console.log("------- Cron-Test -------")
+        res.send("SUCCESS")
+    })
+
+    app.post("/TestCalcData", async(req, res) => {
+        try {
+            await scrapController.CalculateData();
+            res.send("SUCCESS")
+        } catch (e) {
+            res.send("FAILED")
+        }
+    })
+    app.post("/CronTest", async(req, res) => {
+        console.log("------- Cron-Test -------")
+        res.send("SUCCESS")
     })
 
 })
